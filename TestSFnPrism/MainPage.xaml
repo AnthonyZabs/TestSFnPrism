@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cr="clr-namespace:Syncfusion.XForms.MaskedEdit;assembly=Syncfusion.SfMaskedEdit.XForms"
+             xmlns:conv="clr-namespace:TestSFnPrism.Converters"
+             x:Class="TestSFnPrism.MainPage">
+    <Page.Resources>
+        <conv:LengthConverter x:Key="converter" />
+    </Page.Resources>
+    <StackLayout Padding="30, 30, 30, 30">
+
+        <cr:SfMaskedEdit x:Name="txtIdentificador"
+                         Keyboard="Numeric"
+                         MaskType="RegEx"
+                         Mask="\d{4} \d{4} \d{3} \d*"
+                         Watermark="11, 16 o 18 dígitos"
+                         Value="{Binding AccountNumber}">
+            <cr:SfMaskedEdit.Triggers>
+                <DataTrigger TargetType="cr:SfMaskedEdit"
+                             Binding="{Binding Source={x:Reference txtIdentificador}, Path=Value, Converter={StaticResource converter}, ConverterParameter=11}"                             
+                             Value="True">
+                    <Setter Property="Mask" Value="\d{4} \d{4} \d{3} \d*" />
+                </DataTrigger>
+                <DataTrigger TargetType="cr:SfMaskedEdit"
+                             Binding="{Binding Source={x:Reference txtIdentificador}, Path=Value, Converter={StaticResource converter}, ConverterParameter=16}"                             
+                             Value="True">
+                    <Setter Property="Mask" Value="\d{4} \d{4} \d{4} \d{4} \d*" />
+                </DataTrigger>
+                <DataTrigger TargetType="cr:SfMaskedEdit"
+                             Binding="{Binding Source={x:Reference txtIdentificador}, Path=Value, Converter={StaticResource converter}, ConverterParameter=18}"                             
+                             Value="True">
+                    <Setter Property="Mask" Value="\d{4} \d{4} \d{4} \d{4} \d{2}" />
+                </DataTrigger>
+            </cr:SfMaskedEdit.Triggers>
+        </cr:SfMaskedEdit>
+        
+        <!--<cr:SfMaskedEdit x:Name="txtIdentificador"
+                         Keyboard="Numeric"
+                         MaskType="RegEx"
+                         Mask="\d{4} \d{4} \d{3} \d*"
+                         Watermark="11, 16 o 18 dígitos"
+                         IsVisible="{Binding Source={x:Reference txtIdentificador3}, Path=Value, Converter={StaticResource converter}, ConverterParameter=11}"
+                         Value="{Binding AccountNumber, Mode=TwoWay}">
+        </cr:SfMaskedEdit>
+
+        <cr:SfMaskedEdit x:Name="txtIdentificador2"
+                         Keyboard="Numeric"
+                         MaskType="RegEx"
+                         Mask="\d{4} \d{4} \d{4} \d{4} \d*"
+                         Watermark="11, 16 o 18 dígitos"
+                         IsVisible="{Binding Source={x:Reference txtIdentificador3}, Path=Value, Converter={StaticResource converter}, ConverterParameter=16}"
+                         Value="{Binding Source={x:Reference txtIdentificador}, Path=Value, Mode=TwoWay}">
+        </cr:SfMaskedEdit>
+
+        <cr:SfMaskedEdit x:Name="txtIdentificador3"
+                         Keyboard="Numeric"
+                         MaskType="RegEx"
+                         Mask="\d{4} \d{4} \d{4} \d{4} \d{2}"
+                         Watermark="11, 16 o 18 dígitos"
+                         IsVisible="{Binding Source={x:Reference txtIdentificador3}, Path=Value, Converter={StaticResource converter}, ConverterParameter=18}"
+                         Value="{Binding Source={x:Reference txtIdentificador2}, Path=Value, Mode=TwoWay}">
+        </cr:SfMaskedEdit>-->
+
+        
+        
+        <!--<cr:SfMaskedEdit x:Name="txtIdentificador"
+                         Keyboard="Numeric"
+                         MaskType="RegEx"
+                         Mask="\d{4} \d{4} \d{3} \d*"
+                         Watermark="11, 16 o 18 dígitos"
+                         Value="{Binding AccountNumber}">
+            <cr:SfMaskedEdit.Triggers>
+                <DataTrigger TargetType="cr:SfMaskedEdit"
+                             Binding="{Binding Source={x:Reference txtIdentificador}, Path=Value, Converter={StaticResource converter}, ConverterParameter=11}"                             
+                             Value="True">
+                    <Setter Property="Mask" Value="\d{4} \d{4} \d{3} \d*" />
+                </DataTrigger>
+                <DataTrigger TargetType="cr:SfMaskedEdit"
+                             Binding="{Binding Source={x:Reference txtIdentificador}, Path=Value, Converter={StaticResource converter}, ConverterParameter=16}"                             
+                             Value="True">
+                    <Setter Property="Mask" Value="\d{4} \d{4} \d{4} \d{4} \d*" />
+                </DataTrigger>
+                <DataTrigger TargetType="cr:SfMaskedEdit"
+                             Binding="{Binding Source={x:Reference txtIdentificador}, Path=Value, Converter={StaticResource converter}, ConverterParameter=18}"                             
+                             Value="True">
+                    <Setter Property="Mask" Value="\d{4} \d{4} \d{4} \d{4} \d{2}" />
+                </DataTrigger>                
+            </cr:SfMaskedEdit.Triggers>
+        </cr:SfMaskedEdit>-->
+
+        
+        
+        <!--
+        <cr:SfMaskedEdit x:Name="txtIdentificador2"
+                         Keyboard="Numeric"
+                         MaskType="RegEx"
+                         Mask="\d{4} \d{4} \d{3} \d*"
+                         Watermark="11, 16 o 18 dígitos"
+                         Value="{Binding Source={x:Reference txtIdentificador}, Path=Value, Mode=TwoWay}"/>
+
+        <Entry x:Name="source"
+               Text="{Binding AccountNumber, Mode=TwoWay}">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                             Binding="{Binding Source={x:Reference source}, Path=Text.Length}"
+                             Value="0">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
+               
+
+        <Entry x:Name="target"
+               Text="{Binding Source={x:Reference source}, Path=Text, Mode=TwoWay}"/>-->
+    </StackLayout>
+
+</ContentPage>
